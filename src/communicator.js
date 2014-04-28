@@ -1,4 +1,4 @@
-var Communicator = window.Communicator = (function(global, $, _, Backbone, Hammer) {
+var Communicator = window.Communicator = (function(global, $, _, Backbone, hammer) {
   'use strict';
 
   var Communicator = function(module, config) {
@@ -109,4 +109,4 @@ var Communicator = window.Communicator = (function(global, $, _, Backbone, Hamme
   Communicator.Triggers = {};
 
   return Communicator;
-})(this, $, _, Backbone, Hammer);
+})(this, $, _, Backbone, hammer);
