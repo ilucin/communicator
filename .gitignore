@@ -1,0 +1,14 @@
+*~
+*.lock
+*.DS_Store
+*.swp
+*.out
+.sass-cache
+.tmp
+.ftppass
+node_modules
+dist
+test/temp
+app/bower_components
+test/bower_components/
+deploy/*
