@@ -1,6 +1,3 @@
-/* Abstract Trigger */
-/* Deps: Communicator.Base.Config, Communicator.Helpers */
-
 (function() {
   'use strict';
 
@@ -12,7 +9,7 @@
 
     initialize: function(attributes, options) {
       options = options || {};
-      Communicator.Helpers.checkProperties(attributes, ['type', 'sourceModuleId']);
+      Communicator.Components.Helpers.checkProperties(attributes, ['type', 'sourceModuleId']);
       this.config = options.config || new Communicator.Base.Config();
       this.module = attributes;
       this._count = 0;

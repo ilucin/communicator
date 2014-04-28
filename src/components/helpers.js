@@ -1,7 +1,7 @@
 (function() {
   'use strict';
 
-  Communicator.Helpers = {
+  Communicator.Components.Helpers = {
     checkProperties: function(obj, properties) {
       if (!obj || !properties) {
         throw 'MISSING MANDATORY PROPERTY';

@@ -9,7 +9,7 @@
     },
 
     initialize: function(attributes) {
-      Communicator.Helpers.checkProperties(attributes, ['top', 'left']);
+      Communicator.Components.Helpers.checkProperties(attributes, ['top', 'left']);
       this.clear({
         silent: true
       });

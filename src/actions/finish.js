@@ -1,5 +1,3 @@
-/* Deps: Communicator.Actions.Abstract */
-
 (function() {
   'use strict';
 

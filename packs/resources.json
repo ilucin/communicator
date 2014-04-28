@@ -1,0 +1,19 @@
+[{
+  "Id": 2,
+  "Name": "orange.png",
+  "Path": "\\images\\orange.png",
+  "IsUsed": true,
+  "Hash": "this is hash"
+}, {
+  "Id": 3,
+  "Name": "grape.png",
+  "Path": "\\images\\grape.png",
+  "IsUsed": true,
+  "Hash": "cfds"
+}, {
+  "Id": 4,
+  "Name": "banana.png",
+  "Path": "\\images\\banana.png",
+  "IsUsed": true,
+  "Hash": "cfds"
+}]

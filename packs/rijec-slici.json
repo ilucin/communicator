@@ -1,0 +1,643 @@
+{
+  "id": "pack-pridruzi-rijec-slici",
+  "type": "pack",
+  "style": {
+    "background-color": "#e1e1ff"
+  },
+  "position": {
+    "top": 0,
+    "left": 0
+  },
+  "size": {
+    "width": "100%",
+    "height": "100%"
+  },
+  "children": [{
+    "id": "sc1",
+    "type": "carousel",
+    "switchSlideOnSwipe": true,
+    "children": [{
+      "id": "s1",
+      "type": "container",
+      "swipable": true,
+      "position": {
+        "top": "0%",
+        "left": "0%"
+      },
+      "size": {
+        "width": "100%",
+        "height": "100%"
+      },
+      "children": [{
+        "id": "in-1",
+        "type": "input",
+        "inputType": "text",
+        "placeholder": "2 + 2?",
+        "position": {
+          "top": "25%",
+          "left": "30%"
+        },
+        "size": {
+          "width": "40%",
+          "height": "10%"
+        },
+        "draggable": true,
+        "value": "",
+        "style": {
+          "border": "0",
+          "border-bottom": "1px solid #666",
+          "background-color": "transparent"
+        }
+      }, {
+        "id": "i-grozde",
+        "type": "image",
+        "src": "http://online.konzum.hr/images/products/014/01411025l.gif",
+        "position": {
+          "top": "35%",
+          "left": "10%"
+        },
+        "size": {
+          "width": "20%",
+          "height": "35%"
+        },
+        "droppable": true
+      }, {
+        "id": "i-tresnja",
+        "type": "image",
+        "src": "http://www.svijetokonas.net/wp-content/uploads/2013/05/Tre%C5%A1nja.jpg",
+        "position": {
+          "top": "35%",
+          "left": "40%"
+        },
+        "size": {
+          "width": "20%",
+          "height": "35%"
+        },
+        "droppable": true
+      }, {
+        "id": "i-banana",
+        "type": "image",
+        "src": "http://www.bigbanana.com/files/1713/6798/9668/banana.png",
+        "position": {
+          "top": "35%",
+          "left": "70%"
+        },
+        "size": {
+          "width": "20%",
+          "height": "35%"
+        },
+        "droppable": true
+      }, {
+        "id": "t1",
+        "type": "text",
+        "value": "Pridruži Riječ Slici",
+        "position": {
+          "top": "5%",
+          "left": "20%"
+        },
+        "size": {
+          "width": "50%",
+          "height": "15%"
+        },
+        "style": {
+          "font-size": "150%",
+          "font-weight": "bold",
+          "color": "#66A",
+          "border-bottom": "#66A"
+        }
+      }, {
+        "id": "t-tresnja",
+        "type": "text",
+        "value": "Trešnja",
+        "draggable": true,
+        "position": {
+          "top": "20%",
+          "left": "15%"
+        },
+        "size": {
+          "width": "20%",
+          "height": "15%"
+        },
+        "style": {
+          "font-size": "120%"
+        }
+      }, {
+        "id": "t-kruska",
+        "type": "text",
+        "value": "Kruška",
+        "draggable": true,
+        "position": {
+          "top": "20%",
+          "left": "65%"
+        },
+        "size": {
+          "width": "15%",
+          "height": "10%"
+        },
+        "style": {
+          "font-size": "120%"
+        }
+      }, {
+        "id": "t-banana",
+        "type": "text",
+        "value": "Banana",
+        "draggable": true,
+        "position": {
+          "top": "80%",
+          "left": "15%"
+        },
+        "size": {
+          "width": "12%",
+          "height": "9%"
+        },
+        "style": {
+          "font-size": "120%"
+        }
+      }, {
+        "id": "t-grozde",
+        "type": "text",
+        "value": "Grožđe",
+        "draggable": true,
+        "position": {
+          "top": "80%",
+          "left": "45%"
+        },
+        "size": {
+          "width": "12%",
+          "height": "9%"
+        },
+        "style": {
+          "font-size": "120%"
+        }
+      }, {
+        "id": "t-jabuka",
+        "type": "text",
+        "value": "Jabuka",
+        "draggable": true,
+        "position": {
+          "top": "80%",
+          "left": "70%"
+        },
+        "size": {
+          "width": "12%",
+          "height": "8%"
+        },
+        "style": {
+          "font-size": "120%"
+        }
+      }],
+      "actions": [{
+        "id": "a1010",
+        "type": "invoke",
+        "method": "finish",
+        "targetIds": [""],
+        "delay": 100,
+        "triggers": [{
+          "id": "t1",
+          "type": "equal",
+          "sourceModuleId": "in-1",
+          "attribute": "value",
+          "attributeValue": "4"
+        }],
+        "expression": "t1"
+      }, {
+        "id": "a3",
+        "type": "invoke",
+        "method": "finish",
+        "targetIds": [""],
+        "delay": 200,
+        "triggers": [{
+          "id": "t1",
+          "type": "drop",
+          "droppedModuleId": "t-banana",
+          "sourceModuleId": "i-banana"
+        }, {
+          "id": "t2",
+          "type": "drop",
+          "droppedModuleId": "t-grozde",
+          "sourceModuleId": "i-grozde"
+        }, {
+          "id": "t3",
+          "type": "drop",
+          "droppedModuleId": "t-tresnja",
+          "sourceModuleId": "i-tresnja"
+        }],
+        "expression": "t1&&t2&&t3"
+      }]
+    }, {
+      "id": "s3",
+      "type": "container",
+      "swipable": true,
+      "position": {
+        "top": "0%",
+        "left": "0%"
+      },
+      "size": {
+        "width": "100%",
+        "height": "100%"
+      },
+      "children": [{
+        "id": "i-jabuka",
+        "type": "image",
+        "src": "http://sanovnikonline.com/wp-content/uploads/2012/12/jabuka.jpg",
+        "position": {
+          "top": "35%",
+          "left": "10%"
+        },
+        "size": {
+          "width": "20%",
+          "height": "35%"
+        },
+        "droppable": true
+      }, {
+        "id": "i-ananas",
+        "type": "image",
+        "src": "images/ananas.png",
+        "position": {
+          "top": "35%",
+          "left": "40%"
+        },
+        "size": {
+          "width": "20%",
+          "height": "35%"
+        },
+        "droppable": true
+      }, {
+        "id": "i-tresnja",
+        "type": "image",
+        "src": "http://www.svijetokonas.net/wp-content/uploads/2013/05/Tre%C5%A1nja.jpg",
+        "position": {
+          "top": "35%",
+          "left": "70%"
+        },
+        "size": {
+          "width": "20%",
+          "height": "35%"
+        },
+        "droppable": true
+      }, {
+        "id": "t1",
+        "type": "text",
+        "value": "Pridruži Riječ Slici",
+        "position": {
+          "top": "5%",
+          "left": "20%"
+        },
+        "size": {
+          "width": "50%",
+          "height": "15%"
+        },
+        "style": {
+          "font-size": "150%",
+          "font-weight": "bold",
+          "color": "#66A",
+          "border-bottom": "#66A"
+        }
+      }, {
+        "id": "t-tresnja",
+        "type": "text",
+        "value": "Trešnja",
+        "draggable": true,
+        "position": {
+          "top": "20%",
+          "left": "15%"
+        },
+        "size": {
+          "width": "20%",
+          "height": "15%"
+        },
+        "style": {
+          "font-size": "120%"
+        }
+      }, {
+        "id": "t-ananas",
+        "type": "text",
+        "value": "Ananas",
+        "draggable": true,
+        "position": {
+          "top": "20%",
+          "left": "65%"
+        },
+        "size": {
+          "width": "15%",
+          "height": "10%"
+        },
+        "style": {
+          "font-size": "120%"
+        }
+      }, {
+        "id": "t-jabuka",
+        "type": "text",
+        "value": "Jabuka",
+        "draggable": true,
+        "position": {
+          "top": "80%",
+          "left": "15%"
+        },
+        "size": {
+          "width": "12%",
+          "height": "9%"
+        },
+        "style": {
+          "font-size": "120%"
+        }
+      }, {
+        "id": "t-krumpir",
+        "type": "text",
+        "value": "Krumpir",
+        "draggable": true,
+        "position": {
+          "top": "80%",
+          "left": "45%"
+        },
+        "size": {
+          "width": "12%",
+          "height": "9%"
+        },
+        "style": {
+          "font-size": "120%"
+        }
+      }, {
+        "id": "t-rotkvica",
+        "type": "text",
+        "value": "Rotkvica",
+        "draggable": true,
+        "position": {
+          "top": "80%",
+          "left": "70%"
+        },
+        "size": {
+          "width": "12%",
+          "height": "8%"
+        },
+        "style": {
+          "font-size": "120%"
+        }
+      }],
+      "actions": [{
+        "id": "a3",
+        "type": "invoke",
+        "method": "finish",
+        "targetIds": [""],
+        "delay": 200,
+        "triggers": [{
+          "id": "t1",
+          "type": "drop",
+          "droppedModuleId": "t-ananas",
+          "sourceModuleId": "i-ananas"
+        }, {
+          "id": "t2",
+          "type": "drop",
+          "droppedModuleId": "t-tresnja",
+          "sourceModuleId": "i-tresnja"
+        }, {
+          "id": "t3",
+          "type": "drop",
+          "droppedModuleId": "t-jabuka",
+          "sourceModuleId": "i-jabuka"
+        }],
+        "expression": "t1&&t2&&t3"
+      }]
+    }, {
+      "id": "s4",
+      "type": "container",
+      "swipable": true,
+      "position": {
+        "top": "0%",
+        "left": "0%"
+      },
+      "size": {
+        "width": "100%",
+        "height": "100%"
+      },
+      "children": [{
+        "id": "i-banana",
+        "type": "image",
+        "src": "http://www.bigbanana.com/files/1713/6798/9668/banana.png",
+        "position": {
+          "top": "35%",
+          "left": "10%"
+        },
+        "size": {
+          "width": "20%",
+          "height": "35%"
+        },
+        "droppable": true
+      }, {
+        "id": "i-grozde",
+        "type": "image",
+        "src": "http://online.konzum.hr/images/products/014/01411025l.gif",
+        "position": {
+          "top": "35%",
+          "left": "40%"
+        },
+        "size": {
+          "width": "20%",
+          "height": "35%"
+        },
+        "droppable": true
+      }, {
+        "id": "i-tresnja",
+        "type": "image",
+        "src": "http://www.svijetokonas.net/wp-content/uploads/2013/05/Tre%C5%A1nja.jpg",
+        "position": {
+          "top": "35%",
+          "left": "70%"
+        },
+        "size": {
+          "width": "20%",
+          "height": "35%"
+        },
+        "droppable": true
+      }, {
+        "id": "t1",
+        "type": "text",
+        "value": "Pridruži Riječ Slici",
+        "position": {
+          "top": "5%",
+          "left": "20%"
+        },
+        "size": {
+          "width": "50%",
+          "height": "15%"
+        },
+        "style": {
+          "font-size": "150%",
+          "font-weight": "bold",
+          "color": "#66A",
+          "border-bottom": "#66A"
+        }
+      }, {
+        "id": "t-tresnja",
+        "type": "text",
+        "value": "Trešnja",
+        "draggable": true,
+        "position": {
+          "top": "20%",
+          "left": "15%"
+        },
+        "size": {
+          "width": "20%",
+          "height": "15%"
+        },
+        "style": {
+          "font-size": "120%"
+        }
+      }, {
+        "id": "t-kruska",
+        "type": "text",
+        "value": "Kruška",
+        "draggable": true,
+        "position": {
+          "top": "20%",
+          "left": "65%"
+        },
+        "size": {
+          "width": "15%",
+          "height": "10%"
+        },
+        "style": {
+          "font-size": "120%"
+        }
+      }, {
+        "id": "t-banana",
+        "type": "text",
+        "value": "Banana",
+        "draggable": true,
+        "position": {
+          "top": "80%",
+          "left": "15%"
+        },
+        "size": {
+          "width": "12%",
+          "height": "9%"
+        },
+        "style": {
+          "font-size": "120%"
+        }
+      }, {
+        "id": "t-grozde",
+        "type": "text",
+        "value": "Grožđe",
+        "draggable": true,
+        "position": {
+          "top": "80%",
+          "left": "45%"
+        },
+        "size": {
+          "width": "12%",
+          "height": "9%"
+        },
+        "style": {
+          "font-size": "120%"
+        }
+      }, {
+        "id": "t-jabuka",
+        "type": "text",
+        "value": "Jabuka",
+        "draggable": true,
+        "position": {
+          "top": "80%",
+          "left": "70%"
+        },
+        "size": {
+          "width": "12%",
+          "height": "8%"
+        },
+        "style": {
+          "font-size": "120%"
+        }
+      }],
+      "actions": [{
+        "id": "a3",
+        "type": "invoke",
+        "method": "finish",
+        "targetIds": [""],
+        "delay": 200,
+        "triggers": [{
+          "id": "t1",
+          "type": "drop",
+          "droppedModuleId": "t-banana",
+          "sourceModuleId": "i-banana"
+        }, {
+          "id": "t2",
+          "type": "drop",
+          "droppedModuleId": "t-grozde",
+          "sourceModuleId": "i-grozde"
+        }, {
+          "id": "t3",
+          "type": "drop",
+          "droppedModuleId": "t-tresnja",
+          "sourceModuleId": "i-tresnja"
+        }],
+        "expression": "t1&&t2&&t3"
+      }]
+    }, {
+      "id": "s2",
+      "type": "container",
+      "swipable": true,
+      "position": {
+        "top": "0%",
+        "left": "0%"
+      },
+      "size": {
+        "width": "100%",
+        "height": "100%"
+      },
+      "children": [{
+        "id": "t1",
+        "type": "text",
+        "value": "Kraj vježbe!",
+        "position": {
+          "top": "35%",
+          "left": "20%"
+        },
+        "size": {
+          "width": "50%",
+          "height": "35%"
+        },
+        "style": {
+          "font-size": "200%"
+        }
+      }]
+    }],
+    "actions": [{
+      "id": "a1",
+      "type": "invoke",
+      "method": "nextItem",
+      "targetIds": [""],
+      "delay": 200,
+      "triggers": [{
+        "id": "t1",
+        "type": "event",
+        "sourceModuleId": "s1",
+        "event": "finish"
+      }]
+    }, {
+      "id": "a2",
+      "type": "invoke",
+      "method": "nextItem",
+      "targetIds": [""],
+      "delay": 200,
+      "triggers": [{
+        "id": "t1",
+        "type": "event",
+        "sourceModuleId": "s3",
+        "event": "finish"
+      }]
+    }, {
+      "id": "a3",
+      "type": "invoke",
+      "method": "nextItem",
+      "targetIds": [""],
+      "delay": 200,
+      "triggers": [{
+        "id": "t1",
+        "type": "event",
+        "sourceModuleId": "s4",
+        "event": "finish"
+      }]
+    }]
+  }],
+  "actions": []
+}

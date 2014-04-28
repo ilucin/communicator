@@ -78,14 +78,14 @@
         throttle: 2
       };
       // debugger;
-      this._hammer = hammer(this.el, this._hammerSettings);
+      this._hammer = Hammer(this.el, this._hammerSettings);
       this._hammer.on('dragstart', _.bind(this.onDragStart, this));
       this._hammer.on('drag', _.bind(this.onDrag, this));
       this._hammer.on('dragend', _.bind(this.onDragEnd, this));
     },
 
     _setViewSwipable: function() {
-      this._hammer = this._hammer || hammer(this.el, this._hammerSettings);
+      this._hammer = this._hammer || Hammer(this.el, this._hammerSettings);
       this._hammer.on('swipe', _.bind(function(event) {
         if (event.target === this.el) {
           this.model.onSwipe(event.gesture.direction);

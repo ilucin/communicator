@@ -1,22 +1,81 @@
 'use strict';
 var LIVERELOAD_PORT = 35729;
-var SERVER_PORT = 9010;
+var SERVER_PORT = 9000;
 var lrSnippet = require('connect-livereload')({
   port: LIVERELOAD_PORT
 });
+
 var mountFolder = function(connect, dir) {
   return connect.static(require('path').resolve(dir));
 };
 
+var concatJsFiles = [
+  'src/communicator.js',
+
+  'src/components/helpers.js',
+  'src/components/id-manager.js',
+
+  'src/base/config.js',
+  'src/base/position.js',
+  'src/base/size.js',
+  'src/base/style.js',
+
+  'src/triggers/abstract.js',
+  'src/triggers/action-end.js',
+  'src/triggers/action-start.js',
+  'src/triggers/active.js',
+  'src/triggers/drop.js',
+  'src/triggers/equal.js',
+  'src/triggers/event.js',
+  'src/triggers/finish.js',
+  'src/triggers/swipe.js',
+
+  'src/actions/abstract.js',
+  'src/actions/finish.js',
+  'src/actions/invoke.js',
+  'src/actions/position.js',
+  'src/actions/resize.js',
+  'src/actions/style.js',
+
+  'src/modules/abstract.js',
+  'src/modules/area.js',
+  'src/modules/text.js',
+  'src/modules/input.js',
+  'src/modules/image.js',
+  'src/modules/audio.js',
+  'src/modules/video.js',
+  'src/modules/container.js',
+  'src/modules/carousel.js',
+  'src/modules/pack.js',
+
+  'src/collections/trigger.js',
+  'src/collections/action.js',
+  'src/collections/module.js',
+
+  'src/views/abstract.js',
+  'src/views/area.js',
+  'src/views/text.js',
+  'src/views/input.js',
+  'src/views/image.js',
+  'src/views/audio.js',
+  'src/views/video.js',
+  'src/views/container.js',
+  'src/views/carousel.js',
+  'src/views/pack.js',
+
+  'src/factories/trigger.js',
+  'src/factories/action.js',
+  'src/factories/module.js',
+  'src/factories/view.js'
+];
+
 module.exports = function(grunt) {
-  // show elapsed time at the end
-  require('time-grunt')(grunt);
   // load all grunt tasks
   require('load-grunt-tasks')(grunt);
 
   // configurable paths
   var yeomanConfig = {
-    app: 'src',
+    app: '',
     dist: 'dist'
   };
 
@@ -26,10 +85,6 @@ module.exports = function(grunt) {
       options: {
         nospawn: true,
         livereload: false
-      },
-      compass: {
-        files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
-        tasks: ['compass']
       },
       livereload: {
         options: {
@@ -112,29 +167,10 @@ module.exports = function(grunt) {
         '!<%= yeoman.app %>/vendor/*'
       ]
     },
-    mocha: {
-      all: {
-        options: {
-          run: true,
-          urls: ['http://localhost:<%= connect.test.options.port %>/index.html']
-        }
-      }
-    },
-    compass: {
-      options: {
-        sassDir: '<%= yeoman.app %>/styles',
-        cssDir: '.tmp/styles',
-        imagesDir: '<%= yeoman.app %>/images',
-        javascriptsDir: '<%= yeoman.app %>/scripts',
-        fontsDir: '<%= yeoman.app %>/styles/fonts',
-        importPath: '<%= yeoman.app %>/bower_components',
-        relativeAssets: true
-      },
-      dist: {},
-      server: {
-        options: {
-          debugInfo: true
-        }
+    concat: {
+      dist: {
+        src: concatJsFiles,
+        dest: 'dist/communicator.js'
       }
     },
     useminPrepare: {
@@ -153,10 +189,14 @@ module.exports = function(grunt) {
     cssmin: {
       dist: {
         files: {
-          '<%= yeoman.dist %>/styles/main.css': [
-            '.tmp/styles/{,*/}*.css',
-            '<%= yeoman.app %>/styles/{,*/}*.css'
-          ]
+          'dist/communicator.min.css': ['dist/communicator.css']
+        }
+      }
+    },
+    uglify: {
+      dist: {
+        files: {
+          'dist/communicator.min.js': ['dist/communicator.js']
         }
       }
     },
@@ -184,29 +224,9 @@ module.exports = function(grunt) {
     copy: {
       dist: {
         files: [{
-          expand: true,
-          dot: true,
-          cwd: '<%= yeoman.app %>',
-          dest: '<%= yeoman.dist %>',
-          src: [
-            '*.{ico,txt}',
-            '.htaccess',
-            'images/{,*/}*.{webp,gif}',
-            'mock/{,*/}*.*',
-            'styles/fonts/{,*/}*.*',
-            'bower_components/jquery/jquery.js',
-            'bower_components/backbone/backbone.js',
-            'bower_components/marionette/lib/backbone.marionette.js',
-            'bower_components/lodash/dist/lodash.compat.js',
-            'bower_components/jquery-hammerjs/jquery.hammer.js',
-            'bower_components/jquery-hammerjs/jquery.hammer-standalone.js',
-            'bower_components/jquery-ui/ui/jquery-ui.js',
-            'bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css',
-            'bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.js',
-            'bower_components/pace/themes/pace-theme-minimal.css',
-            'bower_components/jssha/src/sha',
-            'bower_components/sass-bootstrap/fonts/*.*'
-          ]
+          cwd: '',
+          dest: 'dist/communicator.css',
+          src: ['styles/communicator.css']
         }]
       }
     },
@@ -222,15 +242,6 @@ module.exports = function(grunt) {
       return grunt.task.run(['build', 'open', 'connect:dist:keepalive']);
     }
 
-    if (target === 'test') {
-      return grunt.task.run([
-        'clean:server',
-        'compass:server',
-        'connect:test',
-        'watch:livereload'
-      ]);
-    }
-
     grunt.task.run([
       'clean:server',
       'compass:server',
@@ -240,23 +251,12 @@ module.exports = function(grunt) {
     ]);
   });
 
-  grunt.registerTask('test', [
-    'clean:server',
-    'compass',
-    'connect:test',
-    'mocha',
-    'watch:test'
-  ]);
-
   grunt.registerTask('build', [
     'clean:dist',
-    'compass:dist',
-    'useminPrepare',
-    'htmlmin',
     'concat',
+    'copy',
     'cssmin',
     'uglify',
-    'copy',
     'usemin'
   ]);
 

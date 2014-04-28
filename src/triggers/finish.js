@@ -1,6 +1,3 @@
-/* Abstract Trigger */
-/* Deps: Communicator.Triggers.Abstract, Communicator.Helpers */
-
 (function() {
   'use strict';
 

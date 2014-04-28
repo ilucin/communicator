@@ -1,10 +1,3 @@
-/* Abstract Trigger */
-/* Deps:
-  Components.IdManager
-  Components.Config,
-  Collections.Trigger
-*/
-
 (function() {
   'use strict';
 

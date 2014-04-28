@@ -1,17 +1,17 @@
-var Communicator = window.Communicator = (function(global, $, _, Backbone, hammer) {
+var Communicator = window.Communicator = (function(global, $, _, Backbone, Hammer) {
   'use strict';
 
   var Communicator = function(module, config) {
-    this.config = new Communicator.Config(config);
+    this.config = new Communicator.Base.Config(config);
     this._containerLastDimensions = {};
 
     if (_.isPlainObject(module)) {
-      this.moduleModel = Communicator.Factories.Model.create(module, this.config);
+      this.moduleModel = Communicator.Factories.Module.create(module, this.config);
       this.moduleView = Communicator.Factories.View.create(this.moduleModel, this.config);
-    } else if (module instanceof Communicator.Models.Module) {
+    } else if (module instanceof Communicator.Modules.Abstract) {
       this.moduleModel = module;
       this.moduleView = Communicator.Factories.View.create(this.moduleModel, this.config);
-    } else if (module instanceof Communicator.Views.Module) {
+    } else if (module instanceof Communicator.Views.Abstract) {
       this.moduleModel = module.model;
       this.moduleView = module;
     } else {
@@ -100,7 +100,7 @@ var Communicator = window.Communicator = (function(global, $, _, Backbone, hamme
   });
 
   Communicator.Base = {};
-  Communicator.Objects = {};
+  Communicator.Modules = {};
   Communicator.Actions = {};
   Communicator.Collections = {};
   Communicator.Components = {};
@@ -109,4 +109,4 @@ var Communicator = window.Communicator = (function(global, $, _, Backbone, hamme
   Communicator.Triggers = {};
 
   return Communicator;
-})(this, $, _, Backbone, hammer);
+})(this, $, _, Backbone, Hammer);

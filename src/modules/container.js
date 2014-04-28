@@ -1,7 +1,7 @@
 (function() {
   'use strict';
 
-  var ContainerModel = Communicator.Modules.Area.extend({
+  Communicator.Modules.Container = Communicator.Modules.Area.extend({
     complexProperties: _.clone(Communicator.Modules.Area.prototype.complexProperties).concat(['actions', 'children']),
     displayedProperties: _.clone(Communicator.Modules.Area.prototype.displayedProperties).concat(['background-color', 'droppableArea']),
 

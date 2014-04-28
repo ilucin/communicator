@@ -1,0 +1,723 @@
+{
+  "name": "Volim Boje",
+  "id": 4,
+  "userId": 1,
+  "description": "Ovo je vježba volim boje.",
+  "module": {
+    "id": "pack-volim-boje",
+    "type": "pack",
+    "dir": "volim-boje",
+    "name": "Volim boje",
+    "version": "1",
+    "url": "http://nihao.fer.hr/packs/volim-boje",
+    "params": {
+      "finishButton": false,
+      "style": {
+        "background-color": "#e1e1ff"
+      }
+    },
+    "children": [{
+      "id": "sc1",
+      "type": "slide-container",
+      "params": {
+        "switchSlideOnSwipe": true
+      },
+      "children": [{
+        "id": "s1",
+        "type": "slide",
+        "params": {
+          "swipable": true
+        },
+        "children": [{
+          "id": "i1",
+          "type": "image",
+          "src": "http://2.bp.blogspot.com/_WA1JW5Oxf2g/TMy1ymgY1FI/AAAAAAAAAIo/9q_Wi6lkEF4/s400/big%2Bapple.jpg",
+          "position": {
+            "top": "45%",
+            "left": "10%"
+          },
+          "params": {
+            "style": {
+              "width": "20%"
+            },
+            "draggable": true
+          }
+        }, {
+          "type": "area",
+          "id": "c1",
+          "position": {
+            "top": "25%",
+            "left": "75%"
+          },
+          "params": {
+            "droppable": true,
+            "style": {
+              "width": "15%",
+              "height": "26%",
+              "border": "3px solid #666",
+              "border-top-left-radius": "15%",
+              "border-top-right-radius": "50%",
+              "border-bottom-left-radius": "50%",
+              "border-bottom-right-radius": "50%",
+              "transform": "rotate(45deg)",
+              "-moz-transform": "rotate(45deg)",
+              "-webkit-transform": "rotate(45deg)"
+            }
+          }
+        }, {
+          "type": "image",
+          "id": "i2",
+          "src": "http://www.fakingnews.firstpost.com/wp-content/uploads/2014/01/Banana.jpeg",
+          "params": {
+            "draggable": true,
+            "snapback": true,
+            "snapbackDuration": 200,
+            "style": {
+              "width": "20%"
+            }
+          },
+          "position": {
+            "top": "50%",
+            "left": "40%"
+          }
+        }, {
+          "id": "t1",
+          "type": "text",
+          "value": "Volim Boje: Crveno",
+          "params": {
+            "style": {
+              "font-size": "150%",
+              "font-weight": "bold",
+              "color": "#f00"
+            }
+          },
+          "position": {
+            "top": "5%",
+            "left": "35%"
+          }
+        }, {
+          "id": "t2",
+          "type": "text",
+          "value": "Odvuci jabuku na otisak.",
+          "params": {
+            "style": {
+              "font-size": "120%"
+            }
+          },
+          "position": {
+            "top": "20%",
+            "left": "15%"
+          }
+        }, {
+          "id": "t3",
+          "type": "text",
+          "value": "Krivo",
+          "params": {
+            "style": {
+              "font-size": "150%",
+              "font-weight": "bold",
+              "opacity": 0
+            }
+          },
+          "position": {
+            "top": "85%",
+            "left": "40%"
+          }
+        }, {
+          "id": "t4",
+          "type": "text",
+          "value": "Bravo",
+          "params": {
+            "style": {
+              "font-size": "150%",
+              "font-weight": "bold",
+              "color": "#00f",
+              "opacity": 0
+            }
+          },
+          "position": {
+            "top": "85%",
+            "left": "40%"
+          }
+        }],
+        "actions": [{
+          "id": "a1",
+          "type": "setChildOpacity",
+          "on": [{
+            "event": "drop:i1",
+            "object": "c1"
+          }],
+          "params": {
+            "duration": 200,
+            "targets": ["t4"],
+            "value": 1,
+            "reversable": true,
+            "reverseTimeout": 1000
+          }
+        }, {
+          "id": "a2",
+          "type": "setChildOpacity",
+          "on": [{
+            "event": "active",
+            "object": "i2"
+          }],
+          "params": {
+            "duration": 200,
+            "targets": ["t3"],
+            "value": 1,
+            "reversable": true,
+            "reverseTimeout": 1000
+          }
+        }, {
+          "id": "a3",
+          "type": "finish",
+          "on": [{
+            "event": "actionEnd:a1",
+            "object": ""
+          }],
+          "params": {},
+          "timeout": 1300
+        }]
+      }, {
+        "id": "s2",
+        "type": "slide",
+        "params": {
+          "swipable": true
+        },
+        "children": [{
+          "id": "i1",
+          "type": "image",
+          "src": "http://parilica.hr/346-thickbox/tresnja.jpg",
+          "params": {
+            "style": {
+              "width": "20%"
+            }
+          },
+          "position": {
+            "top": "45%",
+            "left": "10%"
+          }
+        }, {
+          "id": "i2",
+          "type": "image",
+          "src": "http://si-ja.si/wp-content/uploads/2011/08/grozdje.jpg",
+          "params": {
+            "style": {
+              "width": "20%"
+            }
+          },
+          "position": {
+            "top": "45%",
+            "left": "40%"
+          }
+        }, {
+          "id": "i3",
+          "type": "image",
+          "src": "http://2.bp.blogspot.com/_WA1JW5Oxf2g/TMy1ymgY1FI/AAAAAAAAAIo/9q_Wi6lkEF4/s400/big%2Bapple.jpg",
+          "params": {
+            "style": {
+              "width": "20%"
+            }
+          },
+          "position": {
+            "top": "45%",
+            "left": "70%"
+          }
+        }, {
+          "id": "t1",
+          "type": "text",
+          "value": "Volim Boje: Crveno",
+          "params": {
+            "style": {
+              "font-size": "150%",
+              "font-weight": "bold",
+              "color": "#f00"
+            }
+          },
+          "position": {
+            "top": "5%",
+            "left": "35%"
+          }
+        }, {
+          "id": "t2",
+          "type": "text",
+          "value": "Dodirni crvene objekte.",
+          "params": {
+            "style": {
+              "font-size": "120%"
+            }
+          },
+          "position": {
+            "top": "20%",
+            "left": "15%"
+          }
+        }, {
+          "id": "t3",
+          "type": "text",
+          "value": "Krivo",
+          "params": {
+            "style": {
+              "font-size": "150%",
+              "font-weight": "bold",
+              "opacity": 0
+            }
+          },
+          "position": {
+            "top": "85%",
+            "left": "40%"
+          }
+        }, {
+          "id": "t4",
+          "type": "text",
+          "value": "Bravo",
+          "params": {
+            "style": {
+              "font-size": "150%",
+              "font-weight": "bold",
+              "color": "#00f",
+              "opacity": 0
+            }
+          },
+          "position": {
+            "top": "85%",
+            "left": "40%"
+          }
+        }],
+        "actions": [{
+          "id": "a1",
+          "type": "setChildOpacity",
+          "on": [{
+            "id": "t1",
+            "event": "active",
+            "object": "i1"
+          }, {
+            "id": "t2",
+            "event": "active",
+            "object": "i3"
+          }],
+          "expression": "t1&&t2",
+          "params": {
+            "targets": ["t4"],
+            "value": 1,
+            "duration": 200,
+            "reversable": true,
+            "reverseTimeout": 1000
+          }
+        }, {
+          "id": "a2",
+          "type": "setChildOpacity",
+          "on": [{
+            "event": "active",
+            "object": "i2"
+          }],
+          "params": {
+            "targets": ["t3"],
+            "value": 1,
+            "duration": 200,
+            "reversable": true,
+            "reverseTimeout": 1000
+          }
+        }, {
+          "id": "a3",
+          "type": "finish",
+          "on": [{
+            "event": "actionEnd:a1",
+            "object": ""
+          }],
+          "params": {},
+          "timeout": 1300
+        }]
+      }, {
+        "id": "s3",
+        "type": "slide",
+        "params": {
+          "swipable": true
+        },
+        "children": [{
+          "id": "i1",
+          "type": "image",
+          "src": "http://2.bp.blogspot.com/_WA1JW5Oxf2g/TMy1ymgY1FI/AAAAAAAAAIo/9q_Wi6lkEF4/s400/big%2Bapple.jpg",
+          "params": {
+            "draggable": true,
+            "style": {
+              "width": "20%"
+            }
+          },
+          "position": {
+            "top": "45%",
+            "left": "20%"
+          }
+        }, {
+          "id": "i2",
+          "type": "image",
+          "src": "http://doznajemo.com/wp-content/uploads/2013/02/ananas1.jpg",
+          "params": {
+            "draggable": true,
+            "style": {
+              "width": "20%"
+            }
+          },
+          "position": {
+            "top": "45%",
+            "left": "60%"
+          }
+        }, {
+          "id": "t0",
+          "type": "text",
+          "value": "Znaš, ovo voće se može pomicati. Probaj!",
+          "position": {
+            "top": "30%",
+            "left": "20%"
+          }
+        }, {
+          "id": "t1",
+          "type": "text",
+          "value": "Volim Boje: Crveno",
+          "params": {
+            "style": {
+              "font-size": "150%",
+              "font-weight": "bold",
+              "color": "#f00"
+            }
+          },
+          "position": {
+            "top": "5%",
+            "left": "35%"
+          }
+        }, {
+          "id": "t2",
+          "type": "text",
+          "value": "Dodirni objekt koji nije crven.",
+          "params": {
+            "style": {
+              "font-size": "120%"
+            }
+          },
+          "position": {
+            "top": "20%",
+            "left": "15%"
+          }
+        }, {
+          "id": "t3",
+          "type": "text",
+          "value": "Krivo",
+          "params": {
+            "style": {
+              "font-size": "150%",
+              "font-weight": "bold",
+              "opacity": 0
+            }
+          },
+          "position": {
+            "top": "85%",
+            "left": "40%"
+          }
+        }, {
+          "id": "t4",
+          "type": "text",
+          "value": "Bravo",
+          "params": {
+            "style": {
+              "font-size": "150%",
+              "font-weight": "bold",
+              "color": "#00f",
+              "opacity": 0
+            }
+          },
+          "position": {
+            "top": "85%",
+            "left": "40%"
+          }
+        }],
+        "actions": [{
+          "id": "a1",
+          "type": "setChildOpacity",
+          "on": [{
+            "event": "active",
+            "object": "i2"
+          }],
+          "params": {
+            "targets": ["t4"],
+            "value": 1,
+            "duration": 200,
+            "reversable": true,
+            "reverseTimeout": 1000
+          }
+        }, {
+          "id": "a2",
+          "type": "setChildOpacity",
+          "on": [{
+            "event": "active",
+            "object": "i1"
+          }],
+          "params": {
+            "targets": ["t3"],
+            "value": 1,
+            "duration": 200,
+            "reversable": true,
+            "reverseTimeout": 1000
+          }
+        }, {
+          "id": "a3",
+          "type": "finish",
+          "on": [{
+            "event": "actionEnd:a1",
+            "object": ""
+          }],
+          "params": {},
+          "timeout": 1300
+        }]
+      }, {
+        "id": "slide-4",
+        "type": "slide",
+        "params": {
+          "swipable": true
+        },
+        "children": [{
+          "id": "t1",
+          "type": "text",
+          "value": "Ja ću se pomaknuti kad me dodirneš!",
+          "params": {
+            "style": {
+              "color": "#f00",
+              "font-size": "120%"
+            }
+          },
+          "position": {
+            "top": "70%",
+            "left": "10%"
+          }
+        }, {
+          "id": "t2",
+          "type": "text",
+          "value": "Pomakni me!",
+          "params": {
+            "style": {
+              "color": "#009",
+              "font-size": "130%"
+            },
+            "draggable": true
+          },
+          "position": {
+            "top": "30%",
+            "left": "30%"
+          }
+        }, {
+          "id": "t3",
+          "type": "text",
+          "value": "Dodirni me!",
+          "params": {
+            "style": {
+              "color": "#009",
+              "font-size": "130%"
+            }
+          },
+          "position": {
+            "top": "30%",
+            "left": "70%"
+          }
+        }],
+        "actions": [{
+          "id": "a1",
+          "type": "setChildPosition",
+          "params": {
+            "targets": ["t1"],
+            "position": {
+              "top": "50%",
+              "left": "30%"
+            },
+            "reversable": true,
+            "reverseTimeout": 1200,
+            "duration": 300
+          },
+          "on": [{
+            "event": "active",
+            "object": "t1"
+          }]
+        }, {
+          "id": "a2",
+          "type": "finish",
+          "on": [{
+            "event": "actionEnd:a1",
+            "object": ""
+          }],
+          "params": {}
+        }, {
+          "id": "a3",
+          "type": "toggleChildEnabled",
+          "params": {
+            "targets": ["t2"]
+          },
+          "on": [{
+            "event": "active",
+            "object": "t3"
+          }]
+        }]
+      }, {
+        "id": "s6",
+        "type": "slide",
+        "params": {
+          "swipable": true
+        },
+        "children": [{
+          "id": "t10",
+          "type": "text",
+          "value": "Demonstracija izvršavanja akcije na logički izraz triggera",
+          "params": {
+            "style": {
+              "font-size": "120%",
+              "font-weight": "bold"
+            }
+          },
+          "position": {
+            "top": "10%",
+            "left": "10%"
+          }
+        }, {
+          "id": "t11",
+          "type": "text",
+          "value": " ((t1 | t2) & t3) | t4",
+          "params": {
+            "style": {
+              "font-size": "120%",
+              "font-weight": "bold"
+            }
+          },
+          "position": {
+            "top": "20%",
+            "left": "40%"
+          }
+        }, {
+          "id": "t1",
+          "type": "text",
+          "value": "( ( Klikni mene",
+          "position": {
+            "top": "40%",
+            "left": "10%"
+          }
+        }, {
+          "id": "t2",
+          "type": "text",
+          "value": " ili mene )",
+          "position": {
+            "top": "40%",
+            "left": "30%"
+          }
+        }, {
+          "id": "t3",
+          "type": "text",
+          "value": "i mene )",
+          "position": {
+            "top": "40%",
+            "left": "50%"
+          }
+        }, {
+          "id": "t4",
+          "type": "text",
+          "value": "Pusti svih njih, klikni samo mene.",
+          "position": {
+            "top": "60%",
+            "left": "10%"
+          }
+        }, {
+          "id": "t5",
+          "type": "text",
+          "value": "Akcija izvršena!",
+          "params": {
+            "style": {
+              "font-weight": "bold",
+              "visibility": "hidden"
+            }
+          },
+          "position": {
+            "top": "80%",
+            "left": "40%"
+          }
+        }],
+        "actions": [{
+          "id": "a1",
+          "type": "setChildVisibility",
+          "params": {
+            "value": true,
+            "targets": ["t5"],
+            "reversable": true,
+            "reverseTimeout": 700
+          },
+          "on": [{
+            "id": "t1",
+            "event": "active",
+            "object": "t1"
+          }, {
+            "id": "t2",
+            "event": "active",
+            "object": "t2"
+          }, {
+            "id": "t3",
+            "event": "active",
+            "object": "t3"
+          }, {
+            "id": "t4",
+            "event": "active",
+            "object": "t4"
+          }],
+          "expression": "((t1||t2) && t3) || (t4)"
+        }]
+      }, {
+        "id": "slide-5",
+        "type": "slide",
+        "params": {
+          "swipable": true,
+          "style": {
+            "background-color": "ffa"
+          }
+        },
+        "children": [{
+          "id": "t1",
+          "type": "text",
+          "value": "Zadnji slajd. Klikni za kraj!",
+          "params": {
+            "style": {
+              "color": "#339",
+              "font-size": "150%"
+            }
+          },
+          "position": {
+            "top": "45%",
+            "left": "35%"
+          }
+        }],
+        "actions": [{
+          "id": "a1",
+          "type": "setChildOpacity",
+          "params": {
+            "targets": ["t1"],
+            "value": 0,
+            "duration": 300
+          },
+          "on": [{
+            "event": "active",
+            "object": "t1"
+          }]
+        }, {
+          "id": "a1",
+          "type": "finish",
+          "on": [{
+            "event": "active",
+            "object": "t1"
+          }],
+          "params": {},
+          "timeout": 500
+        }]
+      }]
+    }],
+    "actions": [{
+      "id": "a1",
+      "type": "finish",
+      "on": [{
+        "event": "finish",
+        "object": "sc1"
+      }],
+      "params": {}
+    }]
+  }
+}

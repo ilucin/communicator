@@ -1,0 +1,566 @@
+{
+  "id": "pack-volim-boje",
+  "type": "pack",
+  "name": "Volim boje",
+  "style": {
+    "background-color": "#e1e1ff"
+  },
+  "finishButton": false,
+  "children": [{
+    "id": "car1",
+    "type": "carousel",
+    "switchItemOnSwipe": true,
+    "children": [{
+      "id": "s1",
+      "type": "container",
+      "swipable": true,
+      "size": {
+        "width": "50%",
+        "height": "100%"
+      },
+      "children": [{
+        "id": "cont1",
+        "type": "container",
+        "position": {
+          "left": "80%",
+          "top": "80%"
+        },
+        "draggable": true,
+        "style": {
+          "border": "1px solid #ccc"
+        },
+        "size": {
+          "width": "20%",
+          "height": "20%"
+        },
+        "children": [{
+          "id": "t1",
+          "type": "text",
+          "value": "Neki tekst",
+          "position": {
+            "top": "30%",
+            "left": "30%"
+          },
+          "size": {
+            "width": "50%",
+            "height": "50%"
+          }
+        }]
+      }, {
+        "id": "i1",
+        "type": "image",
+        "src": "images/grape.png",
+        "position": {
+          "top": "45%",
+          "left": "10%"
+        },
+        "draggable": true,
+        "size": {
+          "width": "20%",
+          "height": "20%"
+        }
+      }, {
+        "type": "area",
+        "id": "c1",
+        "position": {
+          "top": "25%",
+          "left": "75%"
+        },
+        "size": {
+          "width": "15%",
+          "height": "26%"
+        },
+        "droppable": true,
+        "style": {
+          "border": "3px solid #666",
+          "border-top-left-radius": "15%",
+          "border-top-right-radius": "50%",
+          "border-bottom-left-radius": "50%",
+          "border-bottom-right-radius": "50%",
+          "transform": "rotate(45deg)",
+          "-moz-transform": "rotate(45deg)",
+          "-webkit-transform": "rotate(45deg)"
+        }
+      }, {
+        "type": "image",
+        "id": "i2",
+        "src": "images/banana.png",
+        "draggable": true,
+        "snapback": true,
+        "snapbackDuration": 200,
+        "size": {
+          "width": "20%",
+          "height": "20%"
+        },
+        "position": {
+          "top": "50%",
+          "left": "40%"
+        }
+      }, {
+        "id": "t1",
+        "type": "text",
+        "value": "Volim Boje: Crveno",
+        "size": {
+          "width": "38%",
+          "height": "8%"
+        },
+        "style": {
+          "font-size": "150%",
+          "font-weight": "bold",
+          "color": "#f00"
+        },
+        "position": {
+          "top": "5%",
+          "left": "35%"
+        }
+      }, {
+        "id": "t2",
+        "type": "text",
+        "value": "Odvuci jabuku na otisak.",
+        "style": {
+          "font-size": "120%"
+        },
+        "size": {
+          "width": "43%",
+          "height": "7%"
+        },
+        "position": {
+          "top": "20%",
+          "left": "15%"
+        }
+      }, {
+        "id": "t3",
+        "type": "text",
+        "value": "Krivo",
+        "size": {
+          "width": "20%",
+          "height": "10%"
+        },
+        "style": {
+          "font-size": "150%",
+          "font-weight": "bold",
+          "opacity": 0
+        },
+        "position": {
+          "top": "85%",
+          "left": "40%"
+        }
+      }, {
+        "id": "t4",
+        "type": "text",
+        "value": "Bravo",
+        "size": {
+          "width": "20%",
+          "height": "10%"
+        },
+        "style": {
+          "font-size": "150%",
+          "font-weight": "bold",
+          "color": "#00f",
+          "opacity": 0
+        },
+        "position": {
+          "top": "85%",
+          "left": "40%"
+        }
+      }],
+      "actions": [{
+        "id": "a1",
+        "type": "style",
+        "targetIds": ["t4"],
+        "triggers": [{
+          "id": "t1",
+          "type": "drop",
+          "sourceModuleId": "c1",
+          "droppedModuleId": "i1"
+        }],
+        "duration": 200,
+        "style": {
+          "opacity": 1
+        }
+      }, {
+        "id": "a1-rev",
+        "type": "style",
+        "targetIds": ["t4"],
+        "triggers": [{
+          "id": "t1",
+          "type": "action-end",
+          "sourceModuleId": "a1",
+          "delay": 1200
+        }],
+        "duration": 200,
+        "style": {
+          "opacity": 0
+        }
+      }, {
+        "id": "a2",
+        "type": "style",
+        "targetIds": ["t3"],
+        "triggers": [{
+          "id": "a2_t2",
+          "type": "active",
+          "sourceModuleId": "i2"
+        }],
+        "duration": 200,
+        "style": {
+          "opacity": 1
+        }
+      }, {
+        "id": "a2-rev",
+        "type": "style",
+        "targetIds": ["t3"],
+        "triggers": [{
+          "id": "a2_rev_t2",
+          "type": "action-end",
+          "sourceModuleId": "a2",
+          "delay": 1000
+        }],
+        "duration": 200,
+        "style": {
+          "opacity": 0
+        }
+      }, {
+        "id": "a3",
+        "type": "finish",
+        "targetIds": [""],
+        "triggers": [{
+          "id": "t3",
+          "type": "action-end",
+          "sourceModuleId": "a1-rev",
+          "delay": 200
+        }]
+      }]
+    }, {
+      "id": "s2",
+      "type": "container",
+      "swipable": true,
+      "size": {
+        "width": "50%",
+        "height": "100%"
+      },
+      "children": [{
+        "id": "i1",
+        "type": "image",
+        "src": "images/orange.png",
+        "size": {
+          "width": "20%",
+          "height": "20%"
+        },
+        "position": {
+          "top": "45%",
+          "left": "10%"
+        }
+      }, {
+        "id": "i2",
+        "type": "image",
+        "src": "images/grape.png",
+        "size": {
+          "width": "20%",
+          "height": "20%"
+        },
+        "position": {
+          "top": "45%",
+          "left": "40%"
+        }
+      }, {
+        "id": "i3",
+        "type": "image",
+        "src": "images/image_placeholder.png",
+        "size": {
+          "width": "20%",
+          "height": "20%"
+        },
+        "position": {
+          "top": "45%",
+          "left": "70%"
+        }
+      }, {
+        "id": "t1",
+        "type": "text",
+        "value": "Volim Boje: Crveno",
+        "size": {
+          "width": "38%",
+          "height": "8%"
+        },
+        "style": {
+          "font-size": "150%",
+          "font-weight": "bold",
+          "color": "#f00"
+        },
+        "position": {
+          "top": "5%",
+          "left": "35%"
+        }
+      }, {
+        "id": "t2",
+        "type": "text",
+        "value": "Dodirni crvene objekte.",
+        "style": {
+          "font-size": "120%"
+        },
+        "size": {
+          "width": "31%",
+          "height": "7%"
+        },
+        "position": {
+          "top": "20%",
+          "left": "15%"
+        }
+      }, {
+        "id": "t3",
+        "type": "text",
+        "value": "Krivo",
+        "style": {
+          "font-size": "150%",
+          "font-weight": "bold",
+          "opacity": 0
+        },
+        "size": {
+          "width": "20%",
+          "height": "10%"
+        },
+        "position": {
+          "top": "85%",
+          "left": "40%"
+        }
+      }, {
+        "id": "t4",
+        "type": "text",
+        "value": "Bravo",
+        "style": {
+          "font-size": "150%",
+          "font-weight": "bold",
+          "color": "#00f",
+          "opacity": 0
+        },
+        "size": {
+          "width": "20%",
+          "height": "10%"
+        },
+        "position": {
+          "top": "85%",
+          "left": "40%"
+        }
+      }],
+      "actions": [{
+        "id": "a1",
+        "type": "style",
+        "triggers": [{
+          "id": "t1",
+          "type": "active",
+          "sourceModuleId": "i1"
+        }, {
+          "id": "t2",
+          "type": "active",
+          "sourceModuleId": "i3"
+        }],
+        "expression": "t1&&t2",
+        "targetIds": ["t4"],
+        "duration": 200,
+        "style": {
+          "opacity": 1
+        }
+      }, {
+        "id": "a1_rev",
+        "type": "style",
+        "triggers": [{
+          "id": "t1",
+          "type": "action-end",
+          "sourceModuleId": "a1",
+          "delay": 1000
+        }],
+        "targetIds": ["t4"],
+        "duration": 200,
+        "style": {
+          "opacity": 0
+        }
+      }, {
+        "id": "a2",
+        "type": "style",
+        "triggers": [{
+          "id": "t1",
+          "type": "active",
+          "sourceModuleId": "i2"
+        }],
+        "targetIds": ["t3"],
+        "style": {
+          "opacity": 1
+        },
+        "duration": 200
+      }, {
+        "id": "a2_rev",
+        "type": "style",
+        "triggers": [{
+          "id": "t1",
+          "type": "action-end",
+          "sourceModuleId": "a2",
+          "delay": 1000
+        }],
+        "targetIds": ["t3"],
+        "duration": 200,
+        "style": {
+          "opacity": 0
+        }
+      }, {
+        "id": "a3",
+        "type": "finish",
+        "targetIds": [""],
+        "triggers": [{
+          "id": "t1",
+          "type": "action-end",
+          "sourceModuleId": "a1",
+          "delay": 1300
+        }]
+      }]
+    }, {
+      "id": "slide-3",
+      "type": "container",
+      "swipable": true,
+      "size": {
+        "height": "100%",
+        "width": "100%"
+      },
+      "children": [{
+        "id": "t1",
+        "type": "text",
+        "value": "Ja ću se pomaknuti kad me dodirneš!",
+        "style": {
+          "color": "#f00",
+          "font-size": "120%"
+        },
+        "size": {
+          "width": "50%",
+          "height": "7%"
+        },
+        "position": {
+          "top": "70%",
+          "left": "10%"
+        }
+      }, {
+        "id": "t2",
+        "type": "text",
+        "value": "Pomakni me!",
+        "style": {
+          "color": "#009",
+          "font-size": "130%"
+        },
+        "size": {
+          "width": "20%",
+          "height": "10%"
+        },
+        "draggable": true,
+        "position": {
+          "top": "30%",
+          "left": "30%"
+        }
+      }, {
+        "id": "t3",
+        "type": "text",
+        "value": "Dodirni me!",
+        "style": {
+          "color": "#009",
+          "font-size": "130%"
+        },
+        "size": {
+          "width": "20%",
+          "height": "10%"
+        },
+        "position": {
+          "top": "30%",
+          "left": "70%"
+        }
+      }],
+      "actions": [{
+        "id": "a1",
+        "type": "position",
+        "targetIds": ["t1"],
+        "position": {
+          "top": "50%",
+          "left": "30%"
+        },
+        "duration": 300,
+        "triggers": [{
+          "id": "t1",
+          "type": "active",
+          "sourceModuleId": "t1"
+        }]
+      }, {
+        "id": "a1_rev",
+        "type": "position",
+        "targetIds": ["t1"],
+        "position": {
+          "top": "70%",
+          "left": "10%"
+        },
+        "duration": 300,
+        "triggers": [{
+          "id": "t1",
+          "type": "action-end",
+          "sourceModuleId": "a1",
+          "delay": 500
+        }]
+      }, {
+        "id": "a2",
+        "type": "finish",
+        "targetIds": [""],
+        "triggers": [{
+          "id": "t1",
+          "type": "action-end",
+          "sourceModuleId": "a1"
+        }]
+      }, {
+        "id": "a3",
+        "type": "invoke",
+        "method": "toggleEnabled",
+        "targetIds": ["t2"],
+        "triggers": [{
+          "id": "t1",
+          "type": "active",
+          "sourceModuleId": "t3"
+        }]
+      }]
+    }, {
+      "id": "s0",
+      "type": "container",
+      "swipable": true,
+      "size": {
+        "width": "50%",
+        "height": "100%"
+      },
+      "children": [{
+        "id": "v1",
+        "type": "video",
+        "src": "http://www.w3schools.com/html/movie.mp4",
+        "autoplay": false,
+        "controls": true,
+        "position": {
+          "left": "20%",
+          "top": "20%"
+        },
+        "size": {
+          "width": "60%",
+          "height": "60%"
+        },
+        "style": {
+          "border": "1px solid #999"
+        }
+      }],
+      "actions": []
+    }],
+    "actions": [{
+      "id": "a1",
+      "type": "invoke",
+      "method": "nextItem",
+      "targetIds": [""],
+      "triggers": [{
+        "id": "a1_t1",
+        "type": "finish",
+        "sourceModuleId": "s1"
+      }, {
+        "id": "a1_t2",
+        "type": "finish",
+        "sourceModuleId": "s2"
+      }]
+    }]
+  }]
+}

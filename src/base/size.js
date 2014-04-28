@@ -9,7 +9,7 @@
     },
 
     initialize: function(attributes) {
-      Communicator.Helpers.checkProperties(attributes, ['width', 'height']);
+      Communicator.Components.Helpers.checkProperties(attributes, ['width', 'height']);
       this.clear({
         silent: true
       });
