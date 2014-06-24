@@ -1,15 +1,52 @@
 {
   "name": "communicator",
+  "description": "A mini framework for interactive slide like packs",
   "version": "0.1.0",
+  "homepage": "https://github.com/ilucin/communicator",
+  "keywords": [
+    "communicator"
+  ],
+  "main": [
+    "./dist/communicator.js",
+    "./dist/communicator.css"
+  ],
+  "author": {
+    "name": "Ivan Lučin",
+    "email": "lucin.ivan@gmail.com"
+  },
+  "ignore": [
+    "docs",
+    "styles",
+    "src",
+    "packs",
+    "vendor",
+    ".bowerrc",
+    ".gitignore",
+    ".travis.yml",
+    ".editorconfig",
+    ".jshintc",
+    "build",
+    "build.cmd",
+    "Gruntfile.js",
+    "index.html",
+    "CONTRIBUTING.md",
+    "main.js",
+    "package.json",
+    "addrem",
+    "getdeps",
+    "style.css",
+    "tmp"
+  ],
   "dependencies": {
+    "backbone": "~1.1.2"
+  },
+  "devDependencies": {
     "jquery": "~2.1.0",
-    "backbone": "~1.1.2",
     "requirejs": "~2.1.5",
     "handlebars": "~1.0.0",
     "requirejs-text": "~2.0.5",
     "modernizr": "~2.6.2",
     "lodash": "~2.4.1",
     "hammerjs": "~1.1.2"
-  },
-  "devDependencies": {}
+  }
 }
