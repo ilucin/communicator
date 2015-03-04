@@ -1,6 +1,11 @@
 'use strict';
 
 import $ from 'jquery';
+window.$ = window.jQuery = $;
+
+import Backbone from 'backbone';
+Backbone.$ = $;
+
 import Communicator from 'communicator';
 
 $(function() {
@@ -21,6 +26,6 @@ $(function() {
       triggersEnabled: true,
       dimensionRefreshInterval: 500
     });
-    // player.run($('#main-container'));
+    player.run($('#main-container'));
   });
 });

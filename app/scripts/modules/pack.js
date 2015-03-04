@@ -14,7 +14,7 @@ var PackModule = ContainerModule.extend({
         width: '100',
         height: '100'
       })
-    }, _.result(ContainerModule, 'defaults'));
+    }, _.result(ContainerModule.prototype, 'defaults'));
   }
 });
 

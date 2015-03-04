@@ -2,6 +2,7 @@
 
 import _ from 'lodash';
 import Backbone from 'backbone';
+// import Hammer from 'hammer';
 import AbstractView from 'views/abstract';
 
 var AreaView = AbstractView.extend({
@@ -24,16 +25,16 @@ var AreaView = AbstractView.extend({
   _initView: function() {
     AbstractView.prototype._initView.call(this);
 
-    if (this.model.get('draggable') && !!this.config.get('viewDrag')) {
-      this._setViewDraggable();
-    }
+    // if (this.model.get('draggable') && !!this.config.get('viewDrag')) {
+    //   this._setViewDraggable();
+    // }
 
     if (this.isDroppableArea()) {
       this.$el.addClass('droppable-area');
     }
-    if (this.isSwipable() && !!this.config.get('viewSwipe')) {
-      this._setViewSwipable();
-    }
+    // if (this.isSwipable() && !!this.config.get('viewSwipe')) {
+    //   this._setViewSwipable();
+    // }
 
     this.listenTo(this.model, 'update:position', this.setPosition, this);
     this.listenTo(this.model, 'update:style', this.setStyle, this);
