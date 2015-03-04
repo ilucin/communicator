@@ -1,7 +1,5 @@
-(function() {
-  'use strict';
+'use strict';
 
-  Communicator.Collections.Module = Backbone.Collection.extend({
-    model: Communicator.Modules.Abstract
-  });
-})();
+Communicator.Collections.Module = Backbone.Collection.extend({
+  model: Communicator.Modules.Abstract
+});

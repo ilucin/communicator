@@ -1,15 +1,12 @@
-(function() {
-  'use strict';
+'use strict';
 
-  Communicator.Triggers.Finish = Communicator.Triggers.Abstract.extend({
+Communicator.Triggers.Finish = Communicator.Triggers.Abstract.extend({
 
-    _getSourceModuleFromContainer: function(container) {
-      return container.getChildById(this.get('sourceModuleId'));
-    },
+  _getSourceModuleFromContainer: function(container) {
+    return container.getChildById(this.get('sourceModuleId'));
+  },
 
-    _getEventName: function() {
-      return 'finish';
-    }
-
-  });
-})();
+  _getEventName: function() {
+    return 'finish';
+  }
+});

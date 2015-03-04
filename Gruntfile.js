@@ -244,7 +244,6 @@ module.exports = function(grunt) {
 
     grunt.task.run([
       'clean:server',
-      'compass:server',
       'connect:livereload',
       'open',
       'watch'

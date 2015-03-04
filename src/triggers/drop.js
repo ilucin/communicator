@@ -1,19 +1,16 @@
-(function() {
-  'use strict';
+'use strict';
 
-  Communicator.Triggers.Drop = Communicator.Triggers.Abstract.extend({
+Communicator.Triggers.Drop = Communicator.Triggers.Abstract.extend({
 
-    _getSourceModuleFromContainer: function(container) {
-      return container.getChildById(this.get('sourceModuleId'));
-    },
+  _getSourceModuleFromContainer: function(container) {
+    return container.getChildById(this.get('sourceModuleId'));
+  },
 
-    _getEventName: function() {
-      return 'drop';
-    },
+  _getEventName: function() {
+    return 'drop';
+  },
 
-    _onBeforeEvent: function(droppedModuleId) {
-      return this.get('droppedModuleId') === droppedModuleId;
-    }
-
-  });
-})();
+  _onBeforeEvent: function(droppedModuleId) {
+    return this.get('droppedModuleId') === droppedModuleId;
+  }
+});

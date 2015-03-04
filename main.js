@@ -3,7 +3,7 @@
 $('document').ready(function() {
 
   var hash = window.location.hash;
-  var packName = hash.substr(1, hash.lenght) || 'rijec-slici';
+  var packName = hash.substr(1, hash.lenght) || 'test';
   var pack;
 
   $.get('packs/' + packName + '.json', {

@@ -1,6 +1,3 @@
-(function() {
-  'use strict';
+'use strict';
 
-  Communicator.Base.Style = Backbone.Model.extend({});
-
-})();
+Communicator.Base.Style = Backbone.Model.extend({});

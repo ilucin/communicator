@@ -1,73 +1,70 @@
-(function() {
-  'use strict';
+'use strict';
 
-  Communicator.Views.Abstract = Backbone.View.extend({
-    className: 'module',
+Communicator.Views.Abstract = Backbone.View.extend({
+  className: 'module',
 
-    // The module view constructor
-    initialize: function(options) {
-      options = options || {};
-      if (!options.model) {
-        throw 'AbstractView must have it\'s model set.';
-      }
-      this.config = options.config || new Communicator.Base.Config();
-      this._zIndex = 100;
-      this._initView();
+  // The module view constructor
+  initialize: function(options) {
+    options = options || {};
+    if (!options.model) {
+      throw 'AbstractView must have it\'s model set.';
+    }
+    this.config = options.config || new Communicator.Base.Config();
+    this._zIndex = 100;
+    this._initView();
 
-      this.setEnabled(this.model.get('enabled'));
-      this.listenTo(this.model, 'update:enabled', this.updateEnabled, this);
-    },
+    this.setEnabled(this.model.get('enabled'));
+    this.listenTo(this.model, 'update:enabled', this.updateEnabled, this);
+  },
 
-    // Initialize view from the module params
-    _initView: function() {
-      this.$el.addClass(this.model.get('id'));
-      this.$el.attr('data-id', this.model.get('id'));
-      this.$el.css('z-index', this.getZIndex());
-      return this;
-    },
+  // Initialize view from the module params
+  _initView: function() {
+    this.$el.addClass(this.model.get('id'));
+    this.$el.attr('data-id', this.model.get('id'));
+    this.$el.css('z-index', this.getZIndex());
+    return this;
+  },
 
-    setZIndex: function(zIndex) {
-      this._zIndex = zIndex;
-      this.$el.css('z-index', zIndex);
-    },
+  setZIndex: function(zIndex) {
+    this._zIndex = zIndex;
+    this.$el.css('z-index', zIndex);
+  },
 
-    getZIndex: function() {
-      return this._zIndex;
-    },
+  getZIndex: function() {
+    return this._zIndex;
+  },
 
-    getId: function() {
-      return this.model.get('id');
-    },
+  getId: function() {
+    return this.model.get('id');
+  },
 
-    getModel: function() {
-      return this.model;
-    },
+  getModel: function() {
+    return this.model;
+  },
 
-    setConfig: function(config) {
-      this.config = config;
-    },
+  setConfig: function(config) {
+    this.config = config;
+  },
 
-    // Method that is called when the view is attached to the DOM. Used for some view
-    // initializations that have to happen after the core styles had been applied to the view
-    onDomAttach: function() {},
+  // Method that is called when the view is attached to the DOM. Used for some view
+  // initializations that have to happen after the core styles had been applied to the view
+  onDomAttach: function() {},
 
-    setEnabled: function(enabled) {
-      if ( !! enabled) {
-        this.$el.removeClass('disabled');
-      } else {
-        this.$el.addClass('disabled');
-      }
-    },
+  setEnabled: function(enabled) {
+    if (!!enabled) {
+      this.$el.removeClass('disabled');
+    } else {
+      this.$el.addClass('disabled');
+    }
+  },
 
-    updateEnabled: function(duration, onEnd) {
-      this.setEnabled(this.model.get('enabled'));
-      if (onEnd) {
-        onEnd();
-      }
-    },
+  updateEnabled: function(duration, onEnd) {
+    this.setEnabled(this.model.get('enabled'));
+    if (onEnd) {
+      onEnd();
+    }
+  },
 
-    fixIndex: function() {},
+  fixIndex: function() {},
 
-  });
-
-})();
+});

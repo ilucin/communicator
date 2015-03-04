@@ -1,7 +1,5 @@
-(function() {
-  'use strict';
+'use strict';
 
-  Communicator.Collections.Action = Backbone.Collection.extend({
-    model: Communicator.Actions.Abstract
-  });
-})();
+Communicator.Collections.Action = Backbone.Collection.extend({
+  model: Communicator.Actions.Abstract
+});

@@ -1,7 +1,5 @@
-(function() {
-  'use strict';
+'use strict';
 
-  Communicator.Collections.Trigger = Backbone.Collection.extend({
-    model: Communicator.Triggers.Abstract
-  });
-})();
+Communicator.Collections.Trigger = Backbone.Collection.extend({
+  model: Communicator.Triggers.Abstract
+});
