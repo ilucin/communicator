@@ -9,65 +9,18 @@ var mountFolder = function(connect, dir) {
   return connect.static(require('path').resolve(dir));
 };
 
-var concatJsFiles = [
-  'src/communicator.js',
+var proxySnippet = require('grunt-connect-proxy/lib/utils').proxyRequest;
 
-  'src/components/helpers.js',
-  'src/components/id-manager.js',
+var cacheify = require('cacheify');
+var level = require('level');
+var to5ify = require('6to5ify');
+var aliasify = require('aliasify');
+var debowerify = require('debowerify');
 
-  'src/base/config.js',
-  'src/base/position.js',
-  'src/base/size.js',
-  'src/base/style.js',
-
-  'src/triggers/abstract.js',
-  'src/triggers/action-end.js',
-  'src/triggers/action-start.js',
-  'src/triggers/active.js',
-  'src/triggers/drop.js',
-  'src/triggers/equal.js',
-  'src/triggers/event.js',
-  'src/triggers/finish.js',
-  'src/triggers/swipe.js',
-
-  'src/actions/abstract.js',
-  'src/actions/finish.js',
-  'src/actions/invoke.js',
-  'src/actions/position.js',
-  'src/actions/resize.js',
-  'src/actions/style.js',
-
-  'src/modules/abstract.js',
-  'src/modules/area.js',
-  'src/modules/text.js',
-  'src/modules/input.js',
-  'src/modules/image.js',
-  'src/modules/audio.js',
-  'src/modules/video.js',
-  'src/modules/container.js',
-  'src/modules/carousel.js',
-  'src/modules/pack.js',
-
-  'src/collections/trigger.js',
-  'src/collections/action.js',
-  'src/collections/module.js',
-
-  'src/views/abstract.js',
-  'src/views/area.js',
-  'src/views/text.js',
-  'src/views/input.js',
-  'src/views/image.js',
-  'src/views/audio.js',
-  'src/views/video.js',
-  'src/views/container.js',
-  'src/views/carousel.js',
-  'src/views/pack.js',
-
-  'src/factories/trigger.js',
-  'src/factories/action.js',
-  'src/factories/module.js',
-  'src/factories/view.js'
-];
+var nodePath = ['./app/scripts'];
+if (process.env.NODE_PATH) {
+  nodePath = process.env.NODE_PATH.split(':').concat(['./app/scripts']);
+}
 
 module.exports = function(grunt) {
   // load all grunt tasks
@@ -75,7 +28,7 @@ module.exports = function(grunt) {
 
   // configurable paths
   var yeomanConfig = {
-    app: '',
+    app: 'app',
     dist: 'dist'
   };
 
@@ -84,78 +37,66 @@ module.exports = function(grunt) {
     watch: {
       options: {
         nospawn: true,
-        livereload: false
+        livereload: true,
+        livereloadOnError: false
       },
       livereload: {
         options: {
-          livereload: LIVERELOAD_PORT
+          livereload: grunt.option('livereloadport') || LIVERELOAD_PORT
         },
         files: [
           '<%= yeoman.app %>/*.html',
           '{.tmp,<%= yeoman.app %>}/styles/{,*/}*.css',
-          '{.tmp,<%= yeoman.app %>}/{,*/}*.js',
-          '<%= yeoman.app %>/templates/*.{ejs,mustache,hbs}'
+          '{.tmp,<%= yeoman.app %>}/scripts/{,*/}*.js',
+          '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp}',
+          '<%= yeoman.app %>/scripts/templates/*.{ejs,mustache,hbs}',
+          'test/spec/**/*.js'
         ]
       },
-      test: {
+      browserify: {
         files: [
-          '{.tmp,<%= yeoman.app %>}/{,*/}*.js'
-        ]
-      },
-      js: {
-        files: ['<%= yeoman.app %>/{,*/}*.js'],
-        tasks: ['jshint']
+          '<%= yeoman.app %>/scripts/**/*.js',
+          '<%= yeoman.app %>/scripts/templates/{,**/}*.hbs'
+        ],
+        tasks: ['browserify']
       }
     },
+
     connect: {
       options: {
-        port: SERVER_PORT,
+        port: grunt.option('port') || SERVER_PORT,
         // change this to '0.0.0.0' to access the server from outside
         hostname: '0.0.0.0'
       },
+      proxies: [],
       livereload: {
         options: {
           middleware: function(connect) {
             return [
               lrSnippet,
               mountFolder(connect, '.tmp'),
-              mountFolder(connect, yeomanConfig.app)
-            ];
-          }
-        }
-      },
-      test: {
-        options: {
-          port: 9001,
-          middleware: function(connect) {
-            return [
-              lrSnippet,
-              mountFolder(connect, '.tmp'),
-              mountFolder(connect, 'test'),
-              mountFolder(connect, yeomanConfig.app)
-            ];
-          }
-        }
-      },
-      dist: {
-        options: {
-          middleware: function(connect) {
-            return [
-              mountFolder(connect, yeomanConfig.dist)
+              mountFolder(connect, yeomanConfig.app),
+              proxySnippet
             ];
           }
         }
       }
     },
+
     open: {
       server: {
         path: 'http://localhost:<%= connect.options.port %>'
+      },
+      test: {
+        path: 'http://localhost:<%= connect.test.options.port %>'
       }
     },
+
     clean: {
       dist: ['.tmp', '<%= yeoman.dist %>/*'],
       server: '.tmp'
     },
+
     jshint: {
       options: {
         jshintrc: '.jshintrc',
@@ -167,18 +108,16 @@ module.exports = function(grunt) {
         '!<%= yeoman.app %>/vendor/*'
       ]
     },
-    concat: {
-      dist: {
-        src: concatJsFiles,
-        dest: 'dist/communicator.js'
-      }
-    },
+
+    concat: {},
+
     useminPrepare: {
       html: '<%= yeoman.app %>/index.html',
       options: {
         dest: '<%= yeoman.dist %>'
       }
     },
+
     usemin: {
       html: ['<%= yeoman.dist %>/{,*/}*.html'],
       css: ['<%= yeoman.dist %>/styles/{,*/}*.css'],
@@ -186,6 +125,7 @@ module.exports = function(grunt) {
         dirs: ['<%= yeoman.dist %>']
       }
     },
+
     cssmin: {
       dist: {
         files: {
@@ -193,6 +133,7 @@ module.exports = function(grunt) {
         }
       }
     },
+
     uglify: {
       dist: {
         files: {
@@ -200,6 +141,7 @@ module.exports = function(grunt) {
         }
       }
     },
+
     htmlmin: {
       dist: {
         options: {
@@ -221,6 +163,33 @@ module.exports = function(grunt) {
         }]
       }
     },
+
+    browserify: {
+      dist: {
+        files: {
+          '.tmp/scripts/main.js': ['<%= yeoman.app %>/scripts/*.js']
+        },
+        options: {
+          transform: [
+            // cacheify - cache the results - ~6x speed improvement for a simple project
+            cacheify(to5ify.configure({
+              blacklist: ['useStrict'],
+              code: { // The previous one should work, but I'm not sure if it does...
+                blacklist: ['useStrict']
+              },
+              experimental: true
+            }), level('.cache/6to5')), // run 6to5, experimental for async
+            cacheify(aliasify, level('.cache/aliasify')), // Aliases (eg. underscore->lodash). Needs to be before debowerify, but after 6to5
+            cacheify(debowerify, level('.cache/debowerify')), // include bower components
+          ],
+          browserifyOptions: {
+            paths: nodePath, // absolute import paths
+            debug: true // generates source map
+          }
+        }
+      }
+    },
+
     copy: {
       dist: {
         files: [{
@@ -230,6 +199,7 @@ module.exports = function(grunt) {
         }]
       }
     },
+
     bower: {
       all: {
         rjsConfig: '<%= yeoman.app %>/scripts/main.js'
@@ -238,33 +208,18 @@ module.exports = function(grunt) {
   });
 
   grunt.registerTask('server', function(target) {
-    if (target === 'dist') {
-      return grunt.task.run(['build', 'open', 'connect:dist:keepalive']);
-    }
-
-    grunt.task.run([
-      'clean:server',
-      'connect:livereload',
-      'open',
-      'watch'
-    ]);
+    grunt.log.warn('The `server` task has been deprecated. Use `grunt serve` to start a server.');
+    grunt.task.run(['serve' + (target ? ':' + target : '')]);
   });
 
-  grunt.registerTask('build', [
-    'clean:dist',
-    'concat',
-    'copy',
-    'cssmin',
-    'uglify',
-    'usemin'
-  ]);
-
-  grunt.registerTask('lint', ['jshint']);
-
-  grunt.registerTask('default', [
-    'jshint',
-    'compass',
+  grunt.registerTask('serve', [
+    'clean:server',
+    'browserify',
+    'configureProxies',
     'connect:livereload',
+    'open:server',
     'watch'
   ]);
+
+  grunt.registerTask('default', ['serve']);
 };

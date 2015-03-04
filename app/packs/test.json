@@ -1,0 +1,177 @@
+{
+  "id": "p1",
+  "type": "pack",
+  "name": "Volim boje",
+  "style": {
+    "background-color": "#e1e1ff"
+  },
+  "position": {
+    "top": "0%",
+    "left": "0%"
+  },
+  "children": [{
+    "id": "cr1",
+    "type": "carousel",
+    "itemChangeOnSwipe": true,
+    "children": [{
+      "id": "ct1",
+      "type": "container",
+      "position": {
+        "top": "0%",
+        "left": "0%"
+      },
+      "style": {
+        "background-color": "#e1e1e1",
+        "height": "100%",
+        "width": "100%"
+      },
+      "children": [{
+        "id": "t1",
+        "type": "text",
+        "position": {
+          "top": "10%",
+          "left": "10%"
+        },
+        "value": "Wow!",
+        "style": {
+          "font-size": "300%",
+          "color": "#f00"
+        }
+      }, {
+        "id": "t2",
+        "type": "text",
+        "position": {
+          "top": "50%",
+          "left": "10%"
+        },
+        "value": "Much Loki!",
+        "style": {
+          "font-size": "200%",
+          "color": "#000"
+        }
+      }, {
+        "id": "i1",
+        "type": "image",
+        "position": {
+          "top": "20%",
+          "left": "50%"
+        },
+        "draggable": true,
+        "style": {
+          "width": "40%"
+        },
+        "src": "https://pbs.twimg.com/profile_images/378800000822867536/3f5a00acf72df93528b6bb7cd0a4fd0c.jpeg"
+      }, {
+        "id": "a1",
+        "type": "area",
+        "position": {
+          "top": "10%",
+          "left": "80%"
+        },
+        "draggable": true,
+        "style": {
+          "width": "5%",
+          "height": "5%",
+          "border": "2px solid #000"
+        }
+      }],
+      "actions": [{
+        "id": "action1",
+        "type": "position",
+        "duration": 500,
+        "targetIds": ["a1", "t1"],
+        "triggers": [{
+          "id": "t1",
+          "type": "active",
+          "sourceModuleId": "a1"
+        }],
+        "position": {
+          "left": "10%",
+          "top": "5%"
+        }
+      }, {
+        "id": "action2",
+        "type": "position",
+        "duration": 1000,
+        "targetIds": ["a1"],
+        "triggers": [{
+          "id": "a2_t1",
+          "type": "action-end",
+          "sourceModuleId": "action1"
+        }],
+        "position": {
+          "left": "10%",
+          "top": "80%"
+        }
+      }, {
+        "id": "action3",
+        "type": "position",
+        "duration": 1000,
+        "targetIds": ["a1"],
+        "triggers": [{
+          "id": "a3_t1",
+          "type": "action-end",
+          "sourceModuleId": "action2"
+        }],
+        "position": {
+          "left": "80%",
+          "top": "80%"
+        }
+      }, {
+        "id": "action4",
+        "type": "style",
+        "duration": 1000,
+        "targetIds": ["t1"],
+        "triggers": [{
+          "id": "a4_t1",
+          "type": "action-start",
+          "sourceModuleId": "action2"
+        }],
+        "style": {
+          "background-color": "#000000",
+          "color": "#fff"
+        }
+      }, {
+        "id": "action5",
+        "type": "position",
+        "duration": 800,
+        "targetIds": ["t2"],
+        "triggers": [{
+          "id": "a5_t1",
+          "type": "action-start",
+          "sourceModuleId": "action3"
+        }],
+        "position": {
+          "left": "10%",
+          "top": "10%"
+        }
+      }, {
+        "id": "action6",
+        "type": "position",
+        "duration": 1000,
+        "targetIds": ["i1"],
+        "triggers": [{
+          "id": "a6_t1",
+          "type": "action-start",
+          "sourceModuleId": "action3"
+        }],
+        "position": {
+          "left": "20%",
+          "top": "20%"
+        }
+      }]
+    }, {
+      "id": "ct2",
+      "type": "container",
+      "style": {
+        "background-color": "#e1e100",
+        "height": "100%",
+        "width": "100%"
+      },
+      "children": [],
+      "actions": []
+    }],
+    "actions": []
+  }],
+  "actions": []
+}
