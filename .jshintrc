@@ -21,12 +21,5 @@
   "trailing": true,
   "smarttabs": true,
   "jquery": true,
-  "globals": {
-    "jQuery": true,
-    "Backbone": true,
-    "_": true,
-    "$": true,
-    "Hammer": true,
-    "Communicator": true
-  }
+  "globals": {}
 }

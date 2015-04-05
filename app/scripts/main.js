@@ -1,31 +1,31 @@
 'use strict';
 
-import $ from 'jquery';
-window.$ = window.jQuery = $;
+var _ = require('lodash');
+var $ = require('jquery');
+var Backbone = require('backbone');
 
-import Backbone from 'backbone';
+window.$ = window.jQuery = $;
+window._ = _;
 Backbone.$ = $;
 
-import Communicator from 'communicator';
+var Communicator = require('communicator');
 
 $(function() {
-
   var hash = window.location.hash;
-  var packName = hash.substr(1, hash.lenght) || 'test';
+  var packName = hash.substr(1, hash.lenght) || 'test2';
   var pack;
 
+  // db.init().then(function() {
   $.get('packs/' + packName + '.json', {
     async: false
   }).success(function(result) {
-    pack = result;
+    var player = new Communicator(result);
 
-    var player = new Communicator(pack, {
-      viewTap: true,
-      viewDrag: true,
-      viewSwipe: true,
-      triggersEnabled: true,
-      dimensionRefreshInterval: 500
+    player.init().then(function() {
+      player.display($('#main-container'));
     });
-    player.run($('#main-container'));
+
+    window.player = player;
   });
+  // });
 });

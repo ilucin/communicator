@@ -8,6 +8,8 @@
   "dependencies": {
     "6to5": "^2.13.7",
     "browserify": "^8.1.1",
+    "es6-promise": "^2.0.1",
+    "lie": "^2.8.1",
     "remapify": "^1.4.4"
   },
   "devDependencies": {

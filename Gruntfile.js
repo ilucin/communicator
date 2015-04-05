@@ -1,6 +1,6 @@
 'use strict';
 var LIVERELOAD_PORT = 35729;
-var SERVER_PORT = 9000;
+var SERVER_PORT = 10001;
 var lrSnippet = require('connect-livereload')({
   port: LIVERELOAD_PORT
 });
@@ -13,7 +13,7 @@ var proxySnippet = require('grunt-connect-proxy/lib/utils').proxyRequest;
 
 var cacheify = require('cacheify');
 var level = require('level');
-var to5ify = require('6to5ify');
+// var to5ify = require('6to5ify');
 var aliasify = require('aliasify');
 var debowerify = require('debowerify');
 
@@ -172,13 +172,13 @@ module.exports = function(grunt) {
         options: {
           transform: [
             // cacheify - cache the results - ~6x speed improvement for a simple project
-            cacheify(to5ify.configure({
-              blacklist: ['useStrict'],
-              code: { // The previous one should work, but I'm not sure if it does...
-                blacklist: ['useStrict']
-              },
-              experimental: true
-            }), level('.cache/6to5')), // run 6to5, experimental for async
+            // cacheify(to5ify.configure({
+            //   blacklist: ['useStrict'],
+            //   code: { // The previous one should work, but I'm not sure if it does...
+            //     blacklist: ['useStrict']
+            //   },
+            //   experimental: true
+            // }), level('.cache/6to5')), // run 6to5, experimental for async
             cacheify(aliasify, level('.cache/aliasify')), // Aliases (eg. underscore->lodash). Needs to be before debowerify, but after 6to5
             cacheify(debowerify, level('.cache/debowerify')), // include bower components
           ],

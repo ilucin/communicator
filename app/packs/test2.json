@@ -1,37 +1,75 @@
 {
-  "id": "p1",
-  "type": "pack",
-  "name": "Volim boje",
-  "style": {
-    "background-color": "#e1e1ff"
+  "id": "mod_pack",
+
+  "meta": {
+    "name": "Pitalica",
+    "type": "page"
   },
+
+  "view": {
+    "template": "<h1> <%= meta.name %> </h1> <div class=\"child-container\"></div>",
+    "style": "this { padding: 10px; background-color: #E1E1FF; position: absolute; top: 0; left: 0; right: 0; bottom: 0 } this h1 { text-align: center }",
+    "data": "this"
+  },
+
   "children": [{
-    "id": "a1",
-    "type": "area",
-    "position": {
-      "top": "10%",
-      "left": "80%"
+    "id": "mod_question",
+
+    "meta": {
+      "type": "question"
     },
-    "draggable": true,
-    "style": {
-      "width": "5%",
-      "height": "5%",
-      "border": "2px solid #000"
+
+    "data": {
+      "question": "Koliko ima kontinenata na zemlji?",
+      "answers": [5, 7, 10],
+      "correctAnswer": 7
+    },
+
+    "view": {
+      "template": "<h3> <%= question %> </h3> <% for(var i=0; i<answers.length; i++) { var radioId = _.uniqueId('radio_'); %> <label for=\"<%= radioId %>\" class=\"answer\"> <input id=\"<%= radioId %>\" name=\"answer\" type=\"radio\" value=\"<%= answers[i] %>\"> <span><%= answers[i] %></span> </label> <% } %> <div class=\"buttons\"> <button class=\"btn-answer\"> Odgovori </button> </div>",
+      "styleRules": [
+        "this { padding: 0 10px; }",
+        "this .answer { padding: 5px; cursor: pointer; display: block; border-radius: 3px; }",
+        "this .answer:hover { background-color: rgba(0,0,0,0.05); }",
+        "this .buttons { margin-top: 20px; }",
+        "this .btn-answer { font-size: 18px; line-height: 24px; cursor: pointer; }"
+      ],
+      "events": {
+        "click .btn-answer": "onBtnSubmitClick => { if (parseInt(this.view.$('input[type=radio]:checked').val(), 10) === this.data.correctAnswer) { this.trigger('answer:correct'); } else { this.trigger('answer:wrong'); } }"
+      }
+    }
+  }, {
+    "id": "mod_response",
+
+    "meta": {
+      "type": "show-hide-label"
+    },
+
+    "data": {
+      "label": "Netočno",
+      "cssClass": "wrong",
+      "visible": false
+    },
+
+    "view": {
+      "template": "<% if (visible) { %> <div class=\"<%= cssClass %>\"> <%= label %> </div> <% } %> ",
+      "styleRules": [
+        "this { margin-top: 50px; font-size: 20px; }",
+        "this .correct { color: green; }",
+        "this .wrong { color: red; }"
+      ]
     }
   }],
+
+  "layout": ".child-container",
+
   "actions": [{
-    "id": "action1",
-    "type": "position",
-    "duration": 500,
-    "targetIds": ["a1"],
-    "triggers": [{
-      "id": "t1",
-      "type": "active",
-      "sourceModuleId": "a1"
-    }],
-    "position": {
-      "left": "10%",
-      "top": "5%"
-    }
+    "id": "act_show_correct_response",
+    "on": "children.mod_question answer:correct",
+    "do": "{ console.log('act_show_correct_response'); this.children.mod_response.setData({ label: \"Točno\", visible: true, cssClass: \"correct\" }) }"
+  }, {
+    "id": "act_show_wrong_response",
+    "on": "children.mod_question answer:wrong",
+    "do": "{ console.log('act_show_wrong_response'); this.children.mod_response.setData({ label: \"Netočno\", visible: true, cssClass: \"wrong\" }) }"
   }]
 }
