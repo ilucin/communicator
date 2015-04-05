@@ -4,6 +4,10 @@ var _ = require('lodash');
 
 var utils = {
   evaluatePropertyChain: function(ctx, chain) {
+    if (chain === 'this') {
+      return ctx;
+    }
+
     var chainArr = chain.split('.');
     var val = ctx;
     for (var i = 0, l = chainArr.length; i < l; i++) {
@@ -14,11 +18,11 @@ var utils = {
     return val;
   },
 
-  evaulateStringFunction: function(ctx, functionDefinition) {
+  createFunction: function(ctx, functionDefinition) {
     var startIndex = functionDefinition.indexOf('{');
     var endIndex = functionDefinition.lastIndexOf('}');
     var f = new Function(functionDefinition.slice(startIndex + 1, endIndex));
-    return f.apply(ctx);
+    return f.bind(ctx);
   },
 
   evaluate: function(expr) {
@@ -29,8 +33,8 @@ var utils = {
     if (typeof prop === 'string') {
       if (prop.indexOf('this') === 0) {
         return utils.evaluatePropertyChain(ctx, prop.replace('this', ''));
-      } else if (prop.indexOf('function') === 0) {
-        return utils.evaulateStringFunction(ctx, prop);
+      } else if (prop.indexOf('() =>') === 0) {
+        return utils.createFunction(ctx, prop);
       } else {
         return prop;
       }

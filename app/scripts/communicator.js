@@ -22,11 +22,13 @@ Communicator.prototype.display = function($container) {
     return;
   }
 
+  this.module.beforeDisplay();
+
   this.$container = $container || $('body');
   this.$container.html(this.module.view.$el);
 
   setTimeout(function() {
-    self.module.onDisplay();
+    self.module.display();
   });
 };
 

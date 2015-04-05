@@ -25,6 +25,14 @@ function callOnSubmodules(module, method, args) {
   }
 }
 
+var moduleLifecycleMethods = [
+  'create',
+  'beforeDisplay',
+  'display',
+  'dataChange',
+  'destroy'
+];
+
 var BaseModule = function(module) {
   this.id = module.id;
   delete module.id;
@@ -59,24 +67,24 @@ BaseModule.prototype.on = function(ev) {
   Backbone.Events.on.apply(this, arguments);
 };
 
-BaseModule.prototype.onCreate = function() {
-  callOnSubmodules(this, 'onCreate');
-};
-
-BaseModule.prototype.onDisplay = function() {
-  callOnSubmodules(this, 'onDisplay');
-};
-
-BaseModule.prototype.onDataChange = function() {
-  callOnSubmodules(this, 'onDataChange');
-};
-
 BaseModule.prototype.destroy = function() {
   this.onDestroy();
 };
 
-BaseModule.prototype.onDestroy = function() {
-  callOnSubmodules(this, 'onDestroy');
+BaseModule.prototype.beforeDisplay = function() {
+  this.onBeforeDisplay();
 };
+
+BaseModule.prototype.display = function() {
+  this.onDisplay();
+};
+
+_.each(moduleLifecycleMethods, function(method) {
+  var onMethodName = 'on' + method[0].toUpperCase() + method.substr(1);
+  BaseModule.prototype[onMethodName] = function() {
+    this.trigger.apply(this, [method].concat(arguments));
+    callOnSubmodules(this, onMethodName, arguments);
+  };
+});
 
 module.exports = BaseModule;

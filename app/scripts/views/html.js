@@ -1,6 +1,7 @@
 'use strict';
 
 var _ = require('lodash');
+var utils = require('common/utils');
 var Backbone = require('backbone');
 var Styler = require('common/Styler');
 
@@ -12,24 +13,18 @@ var HtmlView = Backbone.View.extend({
     this.module = opts.module;
 
     this.styler = new Styler(opts.id);
+
     if (opts.style) {
       this.styler.addStyle(opts.style);
     }
+
     if (opts.styleRules) {
       this.styler.addStyleRules(opts.styleRules);
     }
 
-    this.eventHandlers = {};
     _.each(opts.events, function(handler, ev) {
-      var args = ev.split(' ');
-      var split = handler.split(' => ');
-      var funcName = split[0];
-      var funcBody = split[1];
-      this.eventHandlers[funcName] = (new Function(funcBody)).bind(this.module);
-      args.push(this.eventHandlers[funcName]);
-      this.$el.on.apply(this.$el, args);
+      this.$el.on.apply(this.$el, ev.split(' ').concat(utils.createFunction(this.module, handler)));
     }, this);
-    this.delegateEvents();
   },
 
   serializeData: function() {

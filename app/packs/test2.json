@@ -3,7 +3,20 @@
 
   "meta": {
     "name": "Pitalica",
-    "type": "page"
+    "showCorrectResponse": "() => { this.children.mod_response.setData({ label: \"Točno\", visible: true, cssClass: \"correct\" }); }",
+    "showWrongResponse": "() => { this.children.mod_response.setData({ label: \"Netočno\", visible: true, cssClass: \"wrong\" }) }",
+    "setCurrentQuestion": "() => { var q = this.data.questions[this.data.current]; this.children.mod_question.setData({ question: q[0], answers: q[1], correct: q[2] })}",
+    "nextQuestionAfterTimeout": "() => { setTimeout((function() { this.meta.hideResponse(); this.data.current = this.data.current === this.data.questions.length - 1 ? 0 : this.data.current + 1; this.meta.setCurrentQuestion() }).bind(this), 500); }",
+    "hideResponse": "() => { this.children.mod_response.setData({ visible: false }); }"
+  },
+
+  "data": {
+    "questions": [
+      ["Koliko ima kontinenata na zemlji?", ["5", "7", "10"], "7"],
+      ["Da li je zemlja okrugla?", ["DA", "NE"], "DA"],
+      ["Hoće li HDZ dobiti sljedeće izbore?", ["DA", "NE"], "DA"]
+    ],
+    "current": 0
   },
 
   "view": {
@@ -15,15 +28,7 @@
   "children": [{
     "id": "mod_question",
 
-    "meta": {
-      "type": "question"
-    },
-
-    "data": {
-      "question": "Koliko ima kontinenata na zemlji?",
-      "answers": [5, 7, 10],
-      "correctAnswer": 7
-    },
+    "data": {},
 
     "view": {
       "template": "<h3> <%= question %> </h3> <% for(var i=0; i<answers.length; i++) { var radioId = _.uniqueId('radio_'); %> <label for=\"<%= radioId %>\" class=\"answer\"> <input id=\"<%= radioId %>\" name=\"answer\" type=\"radio\" value=\"<%= answers[i] %>\"> <span><%= answers[i] %></span> </label> <% } %> <div class=\"buttons\"> <button class=\"btn-answer\"> Odgovori </button> </div>",
@@ -35,15 +40,11 @@
         "this .btn-answer { font-size: 18px; line-height: 24px; cursor: pointer; }"
       ],
       "events": {
-        "click .btn-answer": "onBtnSubmitClick => { if (parseInt(this.view.$('input[type=radio]:checked').val(), 10) === this.data.correctAnswer) { this.trigger('answer:correct'); } else { this.trigger('answer:wrong'); } }"
+        "click .btn-answer": "() => { if (this.view.$('input[type=radio]:checked').val() === this.data.correct) { this.trigger('answer:correct'); } else { this.trigger('answer:wrong'); } }"
       }
     }
   }, {
     "id": "mod_response",
-
-    "meta": {
-      "type": "show-hide-label"
-    },
 
     "data": {
       "label": "Netočno",
@@ -57,19 +58,19 @@
         "this { margin-top: 50px; font-size: 20px; }",
         "this .correct { color: green; }",
         "this .wrong { color: red; }"
-      ]
+      ],
+      "events": {
+        "click": "() => { this.trigger('click'); }"
+      }
     }
   }],
 
   "layout": ".child-container",
 
-  "actions": [{
-    "id": "act_show_correct_response",
-    "on": "children.mod_question answer:correct",
-    "do": "{ console.log('act_show_correct_response'); this.children.mod_response.setData({ label: \"Točno\", visible: true, cssClass: \"correct\" }) }"
-  }, {
-    "id": "act_show_wrong_response",
-    "on": "children.mod_question answer:wrong",
-    "do": "{ console.log('act_show_wrong_response'); this.children.mod_response.setData({ label: \"Netočno\", visible: true, cssClass: \"wrong\" }) }"
-  }]
+  "actions": {
+    "this beforeDisplay": "() => { this.meta.setCurrentQuestion(); }",
+    "children.mod_question answer:correct": "() => { this.meta.showCorrectResponse(); this.meta.nextQuestionAfterTimeout(); }",
+    "children.mod_question answer:wrong": "() => { this.meta.showWrongResponse(); }",
+    "children.mod_response click": "() => { this.meta.hideResponse() }"
+  }
 }

@@ -6,32 +6,43 @@ var utils = require('common/utils');
 var actionsSubmodule = {
   init: function(actions) {
     this.actions = {};
-    _.each(actions, actionsSubmodule.addAction, this);
+
+    if (_.isArray(actions)) {
+      _.each(actions, actionsSubmodule.addComplexAction, this);
+    } else if (_.isObject(actions)) {
+      _.each(actions, actionsSubmodule.addSimpleAction, this);
+    }
   },
 
-  addAction: function(actionConfig) {
+  addAction: function(id, on, functionBody) {
     var action = {
-      id: actionConfig.id,
-      callback: (new Function(actionConfig.do)).bind(this)
+      id: id,
+      callback: utils.createFunction(this, functionBody)
     };
     var onSplit, onModule, onEvent;
 
-    if (actionConfig.on) {
-      onSplit = actionConfig.on.split(' ');
-      onModule = utils.evaluatePropertyChain(this, onSplit[0]);
-      onEvent = onSplit[1];
+    onSplit = on.split(' ');
+    onModule = utils.evaluatePropertyChain(this, onSplit[0]);
+    onEvent = onSplit[1];
 
-      if (onModule) {
-        action.onModule = onModule;
-        action.onEvent = onEvent;
+    if (onModule) {
+      action.onModule = onModule;
+      action.onEvent = onEvent;
 
-        onModule.on(onEvent, action.callback, this);
-      } else {
-        console.warn('onModule could not be found (evaluated through property chain)');
-      }
+      onModule.on(onEvent, action.callback, this);
+    } else {
+      console.warn('onModule could not be found (evaluated through property chain)');
     }
 
-    this.actions[actionConfig.id] = action;
+    this.actions[action.id] = action;
+  },
+
+  addSimpleAction: function(functionBody, trigger) {
+    actionsSubmodule.addAction.call(this, _.uniqueId('action_'), trigger, functionBody);
+  },
+
+  addComplexAction: function(actionConfig) {
+    actionsSubmodule.addAction.call(this, actionConfig.id, actionConfig.on, actionConfig.do);
   }
 };
 
